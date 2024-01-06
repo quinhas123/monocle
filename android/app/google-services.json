@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "160434207106",
+    "project_id": "monocle-9a241",
+    "storage_bucket": "monocle-9a241.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:160434207106:android:67062a1e144de47db7b79b",
+        "android_client_info": {
+          "package_name": "com.example.monocle"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxW1B71lCjllcoiYOukkUPvX3H0KkeyOg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
