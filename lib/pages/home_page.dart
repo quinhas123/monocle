@@ -3,7 +3,7 @@ import 'package:monocle/auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+  HomePage({super.key});
 
   final User? user = Auth().currentUser;
 
@@ -33,6 +33,7 @@ class HomePage extends StatelessWidget {
         title: _title(),
       ),
       body: Container(
+        color: Colors.blueAccent,
         height: double.infinity,
         width: double.infinity,
         padding: const EdgeInsets.all(20),

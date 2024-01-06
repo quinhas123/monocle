@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:monocle/auth.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -42,15 +42,21 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  Widget _title() {
-    return const Text('Firebase Auth');
-  }
-
   Widget _entryField(String title, TextEditingController controller) {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
         labelText: title,
+        labelStyle: const TextStyle(
+          color: Colors.black,
+        ),
+        filled: true,
+        fillColor: Colors.white,
+        icon: title == 'Email' ? const Icon(Icons.email) : const Icon(Icons.key),
+        iconColor: Colors.white,
+      ),
+      style:  const TextStyle(
+        color: Colors.black,
       ),
     );
   }
@@ -61,10 +67,14 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _submitButton() {
     return ElevatedButton(
+        style: const ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll<Color>(Color(0XFF1CE076)),
+          foregroundColor: MaterialStatePropertyAll<Color>(Colors.white),
+        ),
         onPressed: isLogin
             ? signInWithEmailAndPassword
             : createUserWithEmailAndPassword,
-        child: Text(isLogin ? 'Login' : 'Register'));
+        child: Text(isLogin ? 'Login' : 'Criar'));
   }
 
   Widget _loginOrRegisterButton() {
@@ -74,18 +84,43 @@ class _LoginPageState extends State<LoginPage> {
           isLogin = !isLogin;
         });
       },
-      child: Text(isLogin ? 'Register instead' : 'Login instead'),
+      style: TextButton.styleFrom(
+        foregroundColor: Colors.white,
+      ),
+      child: Text(
+        isLogin ? 'Ainda não tem cadastro?' : 'Voltar',
+        style: const TextStyle(
+          decoration: TextDecoration.underline,
+          decorationColor: Colors.white,
+        ),
+      ),
     );
   }
 
   @override
-    @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: _title(),
+        toolbarHeight: 100.0,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/monaclev-white.png', fit: BoxFit.cover),
+            const Padding(padding: EdgeInsets.all(4.0)),
+            Image.asset('assets/monacle-title.png', fit: BoxFit.cover),
+          ],
+        ),
+        backgroundColor: const Color(0XFF00A3FF),
       ),
       body: Container(
+        decoration: const BoxDecoration(
+          gradient: RadialGradient(
+            colors: [
+              Color(0XFF00D1FF),
+              Color(0XFF00A3FF),
+            ],
+          ),
+        ),
         height: double.infinity,
         width: double.infinity,
         padding: const EdgeInsets.all(20),
@@ -93,8 +128,14 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _entryField('email', _controllerEmail),
-            _entryField('password', _controllerPassword),
+            Container(
+              margin: const EdgeInsets.only(bottom: 16.0),
+              child: _entryField('Email', _controllerEmail),
+            ),
+            Container(
+              margin: const EdgeInsets.only(bottom: 16.0),
+              child: _entryField('Senha', _controllerPassword),
+            ),
             _errorMessage(),
             _submitButton(),
             _loginOrRegisterButton(),
