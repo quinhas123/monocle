@@ -57,7 +57,7 @@ class HomePage extends State<HomePageStateless> {
   Widget _userUid() {
     return Text(
       user?.email ?? 'User email',
-      style: TextStyle(
+      style: const TextStyle(
         color: Colors.white,
       ),
     );
@@ -94,10 +94,10 @@ class HomePage extends State<HomePageStateless> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            userPressed ? Text('Olá Usuário!', style: TextStyle(color: Colors.white),) : Text(''),
+            userPressed ? const Text('Olá Usuário!', style: TextStyle(color: Colors.white),) : const Text(''),
             const Padding(padding: EdgeInsets.all(4.0)),
-            userPressed ? _userUid() : Text(''),
-            userPressed ? _signOutButton() : Text(''),
+            userPressed ? _userUid() : const Text(''),
+            userPressed ? _signOutButton() : const Text(''),
           ],
         ),
       ),

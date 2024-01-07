@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:monocle/auth.dart';
+import 'package:monocle/pages/recover_account_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -67,12 +68,23 @@ class _LoginPageState extends State<LoginPage> {
         ),
         filled: true,
         fillColor: Colors.white,
-        icon: title == 'Email' ? const Icon(Icons.email) : const Icon(Icons.key),
+        icon:
+            title == 'Email' ? const Icon(Icons.email) : const Icon(Icons.key),
         iconColor: Colors.white,
       ),
-      style:  const TextStyle(
+      style: const TextStyle(
         color: Colors.black,
       ),
+    );
+  }
+
+  Widget _recoverAccountButton() {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const AnotherPage()));
+      },
+      child: const Text('Go to another page!'),
     );
   }
 
@@ -115,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:_title(),
+      appBar: _title(),
       body: Container(
         decoration: const BoxDecoration(
           gradient: RadialGradient(
@@ -143,6 +155,7 @@ class _LoginPageState extends State<LoginPage> {
             _errorMessage(),
             _submitButton(),
             _loginOrRegisterButton(),
+            _recoverAccountButton(),
           ],
         ),
       ),
