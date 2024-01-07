@@ -32,7 +32,6 @@ class RecoverAccount extends State<RecoverAccountStateless> {
 
   AppBar _title() {
     return AppBar(
-      toolbarHeight: 60.0,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
