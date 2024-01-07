@@ -138,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _loadCreateAccountTitle() {
     if (!isLogin) {
       return Container(
-        padding: EdgeInsets.only(bottom: 15.0),
+        padding: const EdgeInsets.only(bottom: 15.0),
         child: Image.asset('assets/create_account.png', fit: BoxFit.cover),
       );
     } else {
