@@ -17,9 +17,9 @@ samples, guidance on mobile development, and a full API reference.
 
 
 TO DO: 
-  - remove title in appbar
+  - adicionar popups (quando email de recuperação de conta for enviado pelo firebase)
   - adicionar tela de gerenciar conta
     - fazer ser funcional
-  - adicionar tela de recuperar conta e nova senha
+  - nova senha?
     - fazer ser funcional
   - adicionar base de dados firebase e funcionalidade de adicionar e excluir itens do estoque
