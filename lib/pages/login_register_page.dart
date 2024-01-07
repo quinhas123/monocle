@@ -97,8 +97,10 @@ class _LoginPageState extends State<LoginPage> {
   Widget _recoverAccountButton() {
     return TextButton(
       onPressed: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const RecoverAccountStateless()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const RecoverAccountStateless()));
       },
       style: TextButton.styleFrom(
         foregroundColor: Colors.white,
@@ -133,6 +135,28 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  Widget _loadCreateAccountTitle() {
+    if (!isLogin) {
+      return Container(
+        padding: EdgeInsets.only(bottom: 15.0),
+        child: Image.asset('assets/create_account.png', fit: BoxFit.cover),
+      );
+    } else {
+      return Container();
+    }
+  }
+
+  Widget _loadRecoverAccountButton() {
+    if (isLogin) {
+      return Align(
+        alignment: Alignment.centerRight,
+        child: _recoverAccountButton(),
+      );
+    } else {
+      return Container();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -153,6 +177,7 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            _loadCreateAccountTitle(),
             Container(
               margin: const EdgeInsets.only(bottom: 6.0),
               child: _entryField('Email', _controllerEmail),
@@ -161,10 +186,7 @@ class _LoginPageState extends State<LoginPage> {
               child: _entryField('Senha', _controllerPassword),
             ),
             _errorMessage(),
-            Align(
-              alignment: Alignment.centerRight,
-              child: _recoverAccountButton(),
-            ),
+            _loadRecoverAccountButton(),
             _submitButton(),
             _loginOrRegisterButton(),
           ],
