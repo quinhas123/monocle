@@ -81,8 +81,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget _recoverAccountButton() {
     return ElevatedButton(
       onPressed: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const AnotherPage()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => RecoverAccountStateless()));
       },
       child: const Text('Go to another page!'),
     );
