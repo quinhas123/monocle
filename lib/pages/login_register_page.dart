@@ -78,16 +78,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _recoverAccountButton() {
-    return ElevatedButton(
-      onPressed: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => RecoverAccountStateless()));
-      },
-      child: const Text('Go to another page!'),
-    );
-  }
-
   Widget _errorMessage() {
     return Text(errorMessage == '' ? '' : 'ERROR: $errorMessage');
   }
@@ -102,6 +92,25 @@ class _LoginPageState extends State<LoginPage> {
             ? signInWithEmailAndPassword
             : createUserWithEmailAndPassword,
         child: Text(isLogin ? 'Login' : 'Criar'));
+  }
+
+  Widget _recoverAccountButton() {
+    return TextButton(
+      onPressed: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => RecoverAccountStateless()));
+      },
+      style: TextButton.styleFrom(
+        foregroundColor: Colors.white,
+      ),
+      child: const Text(
+        'Esqueceu a senha?',
+        style: TextStyle(
+          decoration: TextDecoration.underline,
+          decorationColor: Colors.white,
+        ),
+      ),
+    );
   }
 
   Widget _loginOrRegisterButton() {
@@ -149,13 +158,15 @@ class _LoginPageState extends State<LoginPage> {
               child: _entryField('Email', _controllerEmail),
             ),
             Container(
-              margin: const EdgeInsets.only(bottom: 6.0),
               child: _entryField('Senha', _controllerPassword),
             ),
             _errorMessage(),
+            Align(
+              alignment: Alignment.centerRight,
+              child: _recoverAccountButton(),
+            ),
             _submitButton(),
             _loginOrRegisterButton(),
-            _recoverAccountButton(),
           ],
         ),
       ),
