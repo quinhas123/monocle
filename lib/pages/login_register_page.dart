@@ -42,6 +42,21 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  AppBar _title() {
+    return AppBar(
+      toolbarHeight: 100.0,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset('assets/monaclev-white.png', fit: BoxFit.cover),
+          const Padding(padding: EdgeInsets.all(4.0)),
+          Image.asset('assets/monacle-title.png', fit: BoxFit.cover),
+        ],
+      ),
+      backgroundColor: const Color(0XFF00A3FF),
+    );
+  }
+
   Widget _entryField(String title, TextEditingController controller) {
     return TextField(
       controller: controller,
@@ -100,18 +115,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 100.0,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/monaclev-white.png', fit: BoxFit.cover),
-            const Padding(padding: EdgeInsets.all(4.0)),
-            Image.asset('assets/monacle-title.png', fit: BoxFit.cover),
-          ],
-        ),
-        backgroundColor: const Color(0XFF00A3FF),
-      ),
+      appBar:_title(),
       body: Container(
         decoration: const BoxDecoration(
           gradient: RadialGradient(
@@ -129,11 +133,11 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              margin: const EdgeInsets.only(bottom: 16.0),
+              margin: const EdgeInsets.only(bottom: 6.0),
               child: _entryField('Email', _controllerEmail),
             ),
             Container(
-              margin: const EdgeInsets.only(bottom: 16.0),
+              margin: const EdgeInsets.only(bottom: 6.0),
               child: _entryField('Senha', _controllerPassword),
             ),
             _errorMessage(),
