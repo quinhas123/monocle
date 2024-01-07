@@ -98,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
     return TextButton(
       onPressed: () {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => RecoverAccountStateless()));
+            MaterialPageRoute(builder: (context) => const RecoverAccountStateless()));
       },
       style: TextButton.styleFrom(
         foregroundColor: Colors.white,

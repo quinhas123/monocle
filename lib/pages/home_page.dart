@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:monocle/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:monocle/pages/manage_account_page.dart';
 
 class HomePageStateless extends StatefulWidget {
   const HomePageStateless({super.key});
@@ -35,13 +36,18 @@ class HomePage extends State<HomePageStateless> {
               shape: MaterialStateProperty.all<CircleBorder>(
                 const CircleBorder(
                   side: BorderSide(
-                    color: Colors.teal,
+                    color: Color(0XFF00631C),
                     width: 2.0,
                   ),
                 ),
               ),
             ),
-            child: const Text('U'),
+            child: const Text(
+              'U',
+              style: TextStyle(
+                color: Color(0XFF00631C),
+              ),
+              ),
             onPressed: () {
               setState(() {
                 userPressed = !userPressed;
@@ -63,6 +69,20 @@ class HomePage extends State<HomePageStateless> {
     );
   }
 
+  Widget _manageAccountButton() {
+    return ElevatedButton(
+      style: const ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll<Color>(Color(0XFF00631C)),
+          foregroundColor: MaterialStatePropertyAll<Color>(Colors.white),
+        ),
+      onPressed: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ManageAccountStateless()));
+      },
+      child: const Text('Gerenciar Conta'),
+    );
+  }
+
   Widget _signOutButton() {
     return ElevatedButton(
       style: const ButtonStyle(
@@ -70,7 +90,7 @@ class HomePage extends State<HomePageStateless> {
           foregroundColor: MaterialStatePropertyAll<Color>(Colors.white),
         ),
       onPressed: signOut,
-      child: const Text('Sign Out'),
+      child: const Text('Sair'),
     );
   }
 
@@ -97,6 +117,7 @@ class HomePage extends State<HomePageStateless> {
             userPressed ? const Text('Olá Usuário!', style: TextStyle(color: Colors.white),) : const Text(''),
             const Padding(padding: EdgeInsets.all(4.0)),
             userPressed ? _userUid() : const Text(''),
+            userPressed ? _manageAccountButton() : const Text(''),
             userPressed ? _signOutButton() : const Text(''),
           ],
         ),
