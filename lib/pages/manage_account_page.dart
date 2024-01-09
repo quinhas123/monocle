@@ -57,7 +57,7 @@ class ManageAccount extends State<ManageAccountStateless> {
         case 'Confirmar Email':
           return const Icon(Icons.email);
         case 'Senha':
-        case 'Confirmar Senha':
+        case 'Confirmar Senha Anterior':
           return const Icon(Icons.key);
         default:
           return const Icon(Icons.circle);
@@ -110,9 +110,9 @@ class ManageAccount extends State<ManageAccountStateless> {
             const Padding(padding: EdgeInsets.all(4.0)),
             _entryField('Confirmar Email', _controllerEmailConfirm),
             const Padding(padding: EdgeInsets.all(4.0)),
-            _entryField('Senha', _controllerPassword),
+            _entryField('Senha Atual', _controllerPassword),
             const Padding(padding: EdgeInsets.all(4.0)),
-            _entryField('Confirmar Senha', _controllerPasswordConfirm),
+            _entryField('Nova Senha', _controllerPasswordConfirm),
             _submitButton(),
           ],
         ),
