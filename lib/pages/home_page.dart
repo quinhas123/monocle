@@ -5,6 +5,7 @@ import 'package:monocle/db_widgets/product_widget.dart';
 import 'package:monocle/models/product_model.dart';
 import 'package:monocle/pages/manage_account_page.dart';
 import 'package:monocle/pages/new_product_page.dart';
+import 'package:monocle/pages/user_page.dart';
 import 'package:monocle/services/database_helper.dart';
 
 
@@ -75,9 +76,10 @@ class HomePage extends State<HomePageStateless> {
               ),
             ),
             onPressed: () {
-              setState(() {
-                userPressed = !userPressed;
-              });
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const UserPageStateless()));
             },
           ),
         ],
