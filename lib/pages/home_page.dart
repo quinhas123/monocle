@@ -48,6 +48,27 @@ class HomePage extends State<HomePageStateless> {
               ),
             ),
             child: const Text(
+              'D',
+              style: TextStyle(
+                color: Color(0XFF00631C),
+              ),
+            ),
+            onPressed: () async {
+              await DatabaseHelper.deleteTable("Products");
+            },
+          ),
+          ElevatedButton(
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all<CircleBorder>(
+                const CircleBorder(
+                  side: BorderSide(
+                    color: Color(0XFF00631C),
+                    width: 2.0,
+                  ),
+                ),
+              ),
+            ),
+            child: const Text(
               'U',
               style: TextStyle(
                 color: Color(0XFF00631C),
@@ -191,7 +212,7 @@ class HomePage extends State<HomePageStateless> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const NewProductScreen()));
+            MaterialPageRoute(builder: (context) => NewProductScreen()));
           setState(() {});
         },
         child: const Icon(Icons.add),

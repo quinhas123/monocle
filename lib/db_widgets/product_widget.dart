@@ -34,6 +34,33 @@ class ProductWidget extends StatelessWidget {
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                  child: Divider(
+                    thickness: 1,
+                  ),
+                ),
+                Text("Cost: R\$ " + product.cost.toString(),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w400)),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                  child: Divider(
+                    thickness: 1,
+                  ),
+                ),
+                Text("Price: R\$ " + product.price.toString(),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w400)),
+                  const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                  child: Divider(
+                    thickness: 1,
+                  ),
+                ),
+                Text("Stock: " + product.stock.toString(),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w400))
               ],
             ),
           ),

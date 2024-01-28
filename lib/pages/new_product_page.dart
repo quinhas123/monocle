@@ -4,7 +4,12 @@ import 'package:monocle/services/database_helper.dart';
 
 class NewProductScreen extends StatelessWidget {
   final Product? product;
-  const NewProductScreen({Key? key, this.product}) : super(key: key);
+  NewProductScreen({Key? key, this.product}) : super(key: key);
+
+  final titleController = TextEditingController();
+  final costController = TextEditingController();
+  final priceController = TextEditingController();
+  final stockController = TextEditingController();
 
   AppBar _title() {
     return AppBar(
@@ -53,15 +58,11 @@ class NewProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final titleController = TextEditingController();
-
-    if (product != null) {
-      titleController.text = product!.title;
-    }
 
     return Scaffold(
       appBar: _title(),
-      body: Padding(
+      body: 
+      Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
         child: Column(
           children: [
@@ -71,8 +72,62 @@ class NewProductScreen extends StatelessWidget {
                 controller: titleController,
                 maxLines: 1,
                 decoration: const InputDecoration(
-                    hintText: 'Title',
-                    labelText: 'Products title',
+                    hintText: 'Products Title',
+                    labelText: 'Title',
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                          width: 0.75,
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ))),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 40.0),
+              child: TextFormField(
+                controller: costController,
+                maxLines: 1,
+                decoration: const InputDecoration(
+                    hintText: 'Products Cost',
+                    labelText: 'Cost',
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                          width: 0.75,
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ))),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 40.0),
+              child: TextFormField(
+                controller: priceController,
+                maxLines: 1,
+                decoration: const InputDecoration(
+                    hintText: 'Products Price',
+                    labelText: 'Price',
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                          width: 0.75,
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ))),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 40.0),
+              child: TextFormField(
+                controller: stockController,
+                maxLines: 1,
+                decoration: const InputDecoration(
+                    hintText: 'Current Stock',
+                    labelText: 'Stock',
                     border: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Colors.white,
@@ -92,20 +147,23 @@ class NewProductScreen extends StatelessWidget {
                 child: ElevatedButton(
                     onPressed: () async {
                       final title = titleController.value.text;
+                      final cost = double.parse(costController.value.text);
+                      final price = double.parse(priceController.value.text);
+                      final stock = int.parse(stockController.value.text);
 
                       if (title.isEmpty) {
                         return;
                       }
 
                       final Product model =
-                          Product(title: title, id: product?.id);
+                          Product(title: title, id: product?.id, cost: cost, price: price, stock: stock);
                       if (product == null) {
                         await DatabaseHelper.addProduct(model);
                       } else {
                         await DatabaseHelper.updateProduct(model);
                       }
 
-                      Navigator.pop(context);
+                    Navigator.pop(context);
                     },
                     style: ButtonStyle(
                         shape: MaterialStateProperty.all(
