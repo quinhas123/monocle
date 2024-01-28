@@ -212,7 +212,7 @@ class HomePage extends State<HomePageStateless> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.push(context,
-            MaterialPageRoute(builder: (context) => NewProductScreen()));
+            MaterialPageRoute(builder: (context) => NewProductScreen(userEmail: user!.email)));
           setState(() {});
         },
         child: const Icon(Icons.add),

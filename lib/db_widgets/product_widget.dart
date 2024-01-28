@@ -52,13 +52,22 @@ class ProductWidget extends StatelessWidget {
                 Text("Price: R\$ " + product.price.toString(),
                     style: const TextStyle(
                         fontSize: 16, fontWeight: FontWeight.w400)),
-                  const Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
                   child: Divider(
                     thickness: 1,
                   ),
                 ),
                 Text("Stock: " + product.stock.toString(),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w400)),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                  child: Divider(
+                    thickness: 1,
+                  ),
+                ),
+                Text("Email: " + product.email.toString(),
                     style: const TextStyle(
                         fontSize: 16, fontWeight: FontWeight.w400))
               ],

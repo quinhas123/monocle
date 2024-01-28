@@ -4,12 +4,12 @@ import 'package:path/path.dart';
 
 class DatabaseHelper {
   static const int _version = 1;
-  static const String _dbName = "Products2.db";
+  static const String _dbName = "Products5.db";
 
   static Future<Database> _getDB() async {
     return openDatabase(join(await getDatabasesPath(), _dbName),
         onCreate: (db, version) async => await db.execute(
-            "CREATE TABLE Products(id INTEGER, email TEXT, title TEXT NOT NULL, cost DOUBLE NOT NULL, price DOUBLE NOT NULL, stock INTEGER NOT NULL, PRIMARY KEY(id, email));"),
+            "CREATE TABLE Products(id INTEGER PRIMARY KEY, email TEXT NOT NULL, title TEXT NOT NULL, cost DOUBLE NOT NULL, price DOUBLE NOT NULL, stock INTEGER NOT NULL);"),
         version: _version);
   }
 
@@ -35,7 +35,7 @@ class DatabaseHelper {
   static Future<List<Product>?> getAllProduct(String? email) async {
     final db = await _getDB();
 
-    final List<Map<String, dynamic>> maps = await db.query("Products", where: 'email = $email');
+    final List<Map<String, dynamic>> maps = await db.query("Products", where: 'email = ?', whereArgs: [email]);
 
     if (maps.isEmpty) {
       return null;
