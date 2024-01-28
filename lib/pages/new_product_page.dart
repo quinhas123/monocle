@@ -4,7 +4,8 @@ import 'package:monocle/services/database_helper.dart';
 
 class NewProductScreen extends StatelessWidget {
   final Product? product;
-  NewProductScreen({Key? key, this.product}) : super(key: key);
+  final String? userEmail;
+  NewProductScreen({Key? key, this.product, this.userEmail}) : super(key: key);
 
   final titleController = TextEditingController();
   final costController = TextEditingController();
@@ -156,7 +157,7 @@ class NewProductScreen extends StatelessWidget {
                       }
 
                       final Product model =
-                          Product(title: title, id: product?.id, cost: cost, price: price, stock: stock);
+                          Product(title: title, id: product?.id, cost: cost, price: price, stock: stock, email: userEmail);
                       if (product == null) {
                         await DatabaseHelper.addProduct(model);
                       } else {

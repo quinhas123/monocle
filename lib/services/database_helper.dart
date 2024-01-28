@@ -9,7 +9,7 @@ class DatabaseHelper {
   static Future<Database> _getDB() async {
     return openDatabase(join(await getDatabasesPath(), _dbName),
         onCreate: (db, version) async => await db.execute(
-            "CREATE TABLE Products(id INTEGER PRIMARY KEY, title TEXT NOT NULL, cost DOUBLE NOT NULL, price DOUBLE NOT NULL, stock INTEGER NOT NULL);"),
+            "CREATE TABLE Products(id INTEGER, email TEXT, title TEXT NOT NULL, cost DOUBLE NOT NULL, price DOUBLE NOT NULL, stock INTEGER NOT NULL, PRIMARY KEY(id, email));"),
         version: _version);
   }
 
@@ -32,10 +32,10 @@ class DatabaseHelper {
     return await db.delete("Products", where: 'id = ?', whereArgs: [product.id]);
   }
 
-  static Future<List<Product>?> getAllProduct() async {
+  static Future<List<Product>?> getAllProduct(String? email) async {
     final db = await _getDB();
 
-    final List<Map<String, dynamic>> maps = await db.query("Products");
+    final List<Map<String, dynamic>> maps = await db.query("Products", where: 'email = $email');
 
     if (maps.isEmpty) {
       return null;

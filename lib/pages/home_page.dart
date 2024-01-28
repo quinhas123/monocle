@@ -149,7 +149,7 @@ class HomePage extends State<HomePageStateless> {
     return Scaffold(
       appBar: _title(),
       body: FutureBuilder<List<Product>?>(
-          future: DatabaseHelper.getAllProduct(),
+          future: DatabaseHelper.getAllProduct(user!.email),
           builder: (context, AsyncSnapshot<List<Product>?> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CircularProgressIndicator();
@@ -165,7 +165,7 @@ class HomePage extends State<HomePageStateless> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => NewProductScreen(
-                                product: snapshot.data![index],
+                                product: snapshot.data![index], userEmail: user!.email
                               )));
                       setState(() {});
                     },

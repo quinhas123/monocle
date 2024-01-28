@@ -4,8 +4,9 @@ class Product {
   final double? cost;
   final double? price;
   final int? stock;
+  final String? email;
 
-  const Product({this.title="", this.cost, this.price, this.stock, this.id});
+  const Product({this.title="", this.cost, this.price, this.stock, this.id, this.email});
 
   factory Product.fromJson(Map<String, dynamic> json) =>
       Product(
@@ -14,6 +15,7 @@ class Product {
          cost: json['cost'],
         price: json['price'],
         stock: json['stock'],
+        email: json['email']
         );
 
   Map<String, dynamic> toJson() => {
@@ -21,6 +23,7 @@ class Product {
      'title': title,
       'cost': cost,
      'price': price,
-     'stock': stock
+     'stock': stock,
+     'email': email
   };
 }
